@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Flask Parent Template</title>
-    <link rel="stylesheet" href="../static/css/navbar.css">
-    
-</head>
+    <link rel="stylesheet" href="../static/css/navbar.css" />
+  </head>
   <body>
     <header>
       <div class="navbar">
-        <strong><nav>
-          <ul>
-            <li class="link"><a href="https://buranme-database.herokuapp.com">Home</a></li>
-            <li class="link"><a href="https://buranme-database.herokuapp.com/profile">Profile</a></li>
-            <li class="link"><a href="https://buranme-database.herokuapp.com/about">About</a></li>
-          </ul>
-        </nav></strong>
+        <a class="link" href="https://buranme-database.herokuapp.com">Home</a>
+        <a class="link" href="https://buranme-database.herokuapp.com/profile"
+          >Profile</a
+        >
+        <a class="link" href="https://buranme-database.herokuapp.com/about"
+          >About</a
+        >
       </div>
     </header>
-    
-{% block content %}
-{% endblock %}
 
- </body>
+    {% block content %} {% endblock %}
+  </body>
 </html>
