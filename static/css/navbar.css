@@ -1,4 +1,7 @@
 .navbar{
-    background-color:blue;
-
+    background-color:azure;
+    display: flex;
+}
+.link{
+    margin-left: 4px;;
 }
