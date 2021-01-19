@@ -3,5 +3,6 @@
     display: flex;
 }
 .link{
-    margin-left: 4px;;
+    margin-left: 4px;
+    font-size: large;
 }
