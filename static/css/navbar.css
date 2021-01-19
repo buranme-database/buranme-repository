@@ -2,7 +2,7 @@
     background-color:azure;
     display: flex;
 }
-.link{
+.navbar-item{
     margin-left: 8px;
     font-size: 60px;
 }
