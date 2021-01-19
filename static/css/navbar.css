@@ -1,8 +1,8 @@
 .navbar{
     background-color:azure;
     display: flex;
+    font-size: 60px;
 }
 .navbaritem{
     margin-left: 8px;
-    font-size: 60px;
 }
