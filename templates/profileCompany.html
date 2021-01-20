@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+  </head>
+  <body>
+    {% extends "navbarStudent.html" %}
+    {% block content %}
+    
+    <div>
+      <h1>Add a Branch</h1>
+      <p> Name: </p>
+      <input type="text" id="name" placeholder="Name of the branch">
+      <button onclick="addBranch()">Add Branch</button>
+    </div>
+
+    <script>
+      function getUserId(){
+        const USER_ID = sessionStorage.getItem('userID');
+        console.log(USER_ID);
+        return USER_ID;
+      }
+      function addBranch(){
+        var name = document.getElementById("name").value;
+
+        if(name == ""){
+        alert("A name is required");
+        }
+        
+        var sentURL;
+        var baseURL = "http://127.0.0.1:5000";
+
+        
+        sentURL = baseURL + "/addbranch?" + "&company_id=" + getUserId() + "&name=" + name;
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST",sentURL,false);
+        xmlhttp.onreadystatechange = function() {
+          if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+            console.log("success");
+          }
+        };
+        xmlhttp.send();
+      }
+    </script>
+    
+    {% endblock %}
+  </body>
+</html>

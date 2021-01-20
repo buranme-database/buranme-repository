@@ -16,39 +16,33 @@
 
   <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title>Login</title>
   </head>
 
   <body>
 
     <div class="signup">
-      <h1>Sign Up</h1>
+      <h1>Login</h1>
       <select id="usertype">
         <option value="student">Student</option>
         <option value="company">Company</option>
       </select>
-      <p> Full Name: </p>
-      <input type="text" id="name" placeholder="Full Name">
       <p> Username: </p>
       <input type="text" id="username" placeholder="Username">
       <p> Password: </p>
       <input type="password" id="password" placeholder="Password">
-      <button class="mt" onclick="signUp()">Sign Up</button>
-    </div>
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <button class="mt" onclick="logIn()">Login</button>
+      <a href="/">Don't have an account? Sign Up now.</a>
     </div>
 
     <script>
-      function signUp(){
-        var name = document.getElementById("name").value;
+      function logIn(){
         var userName = document.getElementById("username").value;
         var passWord = document.getElementById("password").value;
         var userType = document.getElementById("usertype").value;
 
         if(userName == ""){
         alert("A Username is required");
-        }else if(name == ""){
-        alert("A name is required");
         }else if(passWord == ""){
         alert("A Password is required");
         }
@@ -57,31 +51,36 @@
         var baseURL = "http://127.0.0.1:5000";
 
         if(userType == "student"){
-          sentURL = baseURL + "/ssignup?" + "&username=" + userName + "&name=" + name + "&password=" + passWord;
+            sentURL = baseURL + "/slogin?" + "username=" + userName + "&password=" + passWord;
         } else {
-          sentURL = baseURL + "/csignup?" + "&username=" + userName + "&name=" + name + "&password=" + passWord;
+            sentURL = baseURL + "/clogin?" + "username=" + userName + "&password=" + passWord;
         }
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST",sentURL,false);
         xmlhttp.onreadystatechange = function() {
-          if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
-            console.log("success");
-            showModalSignUpSuccess();
-          }
+            if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+                var response = JSON.parse(xmlhttp.responseText);
+                if(response.id > 0){
+                    // saving user id to session storage
+                    sessionStorage.setItem('userID', response.id);  // SO IMPORTANT
+                    if(userType == "student"){
+                        // go to students main page
+                        window.location.href = "./mainPageStudent";
+                    } else {
+                        // go to company main page
+                        window.location.href = "./mainPageCompany";
+                    }
+                } else {
+                    alert("Wrong username of password!");
+                }
+            }
         };
         xmlhttp.send();
+        
       }
+    
 
-      function showModalSignUpSuccess(){
-        document.getElementById("successModal").innerHTML =
-        '<div class="signup"><div>'+
-        '<p>Account created succesfully.</p>'+
-        '</div>'+
-        '<button type="button" onclick="window.location.href=\'./login.html\';">Go to Sign In</button>'+
-        '</div>';
-        $('#successModal').modal('show')
-      }
     </script>
 
   </body>

@@ -1,8 +1,8 @@
 .navbar{
-    background-color:#487396;
     display: flex;
 }
-.navbaritem{
+.mert {
+    background-color:#487396;
     margin-left: 20px;
     font-size: 30px;
     color: white;

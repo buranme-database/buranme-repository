@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<style>
+  .navbar{
+    display: flex;
+    background-color:#487396;
+    height: 50px;
+    align-items:center;
+}
+.mert {
+    margin-left: 25px;
+    font-size: 30px;
+    color: white;
+    font-family: sans-serif;
+    text-decoration: none;
+}
+</style>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Company Navbar</title>
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <a class="mert" href="mainPageCompany">Home</a>
+        <a class="mert" href="profileCompany">Profile</a>
+        <a class="mert" href="about">About</a>
+      </div>
+    </header>
+
+    {% block content %} {% endblock %}
+  </body>
+</html>
